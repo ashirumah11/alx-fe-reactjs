@@ -1,3 +1,4 @@
+import './App.css';
 import ProfilePage from './components/ProfilePage';
 import UserContext from './components/UserContext';
 
