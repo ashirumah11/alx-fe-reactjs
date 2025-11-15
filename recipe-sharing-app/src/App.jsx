@@ -1,14 +1,31 @@
-import AddRecipeForm from './components/AddRecipeForm';
+// src/App.jsx
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RecipeList from './components/RecipeList';
+import AddRecipeForm from './components/AddRecipeForm';
+import RecipeDetails from './components/RecipeDetails';
+import EditRecipeForm from './components/EditRecipeForm';
 
 function App() {
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Recipe Manager</h1>
+    <BrowserRouter>
+      <div style={{ padding: 20 }}>
+        <h1>Recipe Manager</h1>
+        <Routes>
+          <Route path="/" element={
+            <>
+              <AddRecipeForm />
+              <RecipeList />
+            </>
+          } />
 
-      <AddRecipeForm />
-      <RecipeList />
-    </div>
+          <Route path="/recipes/:id" element={<RecipeDetails />} />
+          <Route path="/recipes/:id/edit" element={<EditRecipeForm />} />
+
+          {/* fallback route (optional) */}
+          <Route path="*" element={<div>Page not found. <a href="/">Go home</a></div>} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
