@@ -1,6 +1,6 @@
 // src/components/RecipeList.jsx
 import { Link } from 'react-router-dom';
-import { useRecipeStore } from '../recipeStore';
+import { useRecipeStore } from './recipeStore';
 
 const RecipeList = () => {
   const recipes = useRecipeStore((s) => s.recipes);
