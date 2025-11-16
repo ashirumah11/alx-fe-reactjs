@@ -5,7 +5,7 @@ import AddRecipeForm from './components/AddRecipeForm';
 import RecipeDetails from './components/RecipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
 import SearchBar from './components/SearchBar';
-import FavouriteList from './FavouritesList'; 
+import FavoriteList from './components/FavoritesList'; 
 import RecommendationsList from './components/RecommendationsList';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
               <AddRecipeForm />
               <RecipeList />
               <hr />
-              <FavouriteList/>
+              <FavoriteList/>
               <hr />
               <RecommendationsList/>
             </>

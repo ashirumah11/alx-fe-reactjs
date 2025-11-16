@@ -27,6 +27,7 @@ const RecipeDetails = () => {
         <Link to={`/recipes/${recipe.id}/edit`}>
           <button>Edit</button>
         </Link>
+        <EditRecipeForm/>
 
         <DeleteRecipeButton
          recipeId={recipe.id} 
