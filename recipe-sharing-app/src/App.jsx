@@ -5,8 +5,8 @@ import AddRecipeForm from './components/AddRecipeForm';
 import RecipeDetails from './components/RecipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
 import SearchBar from './components/SearchBar';
-import FavouriteList from './components/FavouritesList'; 
-import RecommendationsList from './components/RecommendationsList';
+import FavouriteList from './FavouritesList'; 
+import RecommendationsList from './RecommendationsList';
 
 function App() {
   return (
