@@ -6,7 +6,7 @@ import RecipeDetails from './components/RecipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
 import SearchBar from './components/SearchBar';
 import FavouriteList from './FavouritesList'; 
-import RecommendationsList from './RecommendationsList';
+import RecommendationsList from './components/RecommendationsList';
 
 function App() {
   return (
