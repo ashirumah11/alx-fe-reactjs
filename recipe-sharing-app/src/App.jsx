@@ -5,6 +5,9 @@ import AddRecipeForm from './components/AddRecipeForm';
 import RecipeDetails from './components/RecipeDetails';
 import EditRecipeForm from './components/EditRecipeForm';
 import SearchBar from './components/SearchBar';
+import FavouriteList from './components/FavouriteList'; 
+import RecommendationsList from './components/RecommendationsList';
+
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +19,10 @@ function App() {
                <SearchBar />
               <AddRecipeForm />
               <RecipeList />
+              <hr />
+              <FavouriteList/>
+              <hr />
+              <RecommendationsList/>
             </>
           } />
 
