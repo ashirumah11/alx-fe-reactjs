@@ -24,11 +24,13 @@ const RecipeDetails = () => {
       <p>{recipe.description}</p>
 
       <div style={{ marginTop: 12 }}>
-        <Link to={`/recipes/${id}/edit`}>
+        <Link to={`/recipes/${recipe.id}/edit`}>
           <button>Edit</button>
         </Link>
 
-        <DeleteRecipeButton recipeId={id} onDeleted={() => navigate('/')} />
+        <DeleteRecipeButton
+         recipeId={recipe.id} 
+         onDeleted={() => navigate('/')} />
       </div>
 
       <hr />
