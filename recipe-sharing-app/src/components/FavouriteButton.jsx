@@ -1,4 +1,3 @@
-// src/components/FavoriteButton.jsx
 import { useRecipeStore } from "./recipeStore";
 
 const FavoriteButton = ({ recipeId }) => {

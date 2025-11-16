@@ -1,4 +1,3 @@
-// src/components/RecommendationsList.jsx
 import { useRecipeStore } from "./recipeStore";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -9,7 +8,6 @@ const RecommendationsList = () => {
   const recipes = useRecipeStore((s) => s.recipes);
   const favorites = useRecipeStore((s) => s.favorites);
 
-  // Generate recommendations only when recipes or favorites change
   useEffect(() => {
     generateRecommendations();
   }, [recipes.length, favorites.length, generateRecommendations]);
