@@ -1,6 +1,6 @@
 // src/components/Search.jsx
 import { useState } from "react";
-import { fetchUserData } from "../services/githubService";
+import { fetchUserData } from "../services/GithubService";
 
 function Search() {
   const [username, setUsername] = useState("");
@@ -38,10 +38,20 @@ function Search() {
             width: "100%",
             padding: "10px",
             fontSize: "16px",
+            marginRight: "10px"
           }}
-        />
-      </form>
 
+          br
+        />
+        <button 
+        type="submit"
+        disabled={loading}
+        style={{ padding: "10px 20px", fontSize: "16px" }}
+        >
+           {loading ? 'Searching...' : 'Search'}
+        </button>
+      </form>
+    
       {loading && <p>Loading...</p>}
       {error && <p>Looks like we cant find the user</p>}
 
