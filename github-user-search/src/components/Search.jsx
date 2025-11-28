@@ -37,7 +37,7 @@ export default function Search() {
       // GitHub search API returns up to 30 items by default
       setHasMore(items.length > 0);
     } catch (err) {
-      setError("Could not fetch search results.");
+      setError("Looks like we cant find the user.");
       console.error(err);
     } finally {
       setLoading(false);
