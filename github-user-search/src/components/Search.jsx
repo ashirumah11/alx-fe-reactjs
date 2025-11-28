@@ -26,7 +26,7 @@ export default function Search() {
         page: resetPage ? 1 : page,
       });
 
-      const items = response.data.items;
+      const items = response.data.items || [];
 
       if (resetPage) {
         setResults(items);
@@ -34,9 +34,11 @@ export default function Search() {
         setResults((prev) => [...prev, ...items]);
       }
 
-      setHasMore(items.length === 10);
+      // GitHub search API returns up to 30 items by default
+      setHasMore(items.length > 0);
     } catch (err) {
       setError("Could not fetch search results.");
+      console.error(err);
     } finally {
       setLoading(false);
     }
