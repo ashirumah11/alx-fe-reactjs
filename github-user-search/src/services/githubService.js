@@ -1,21 +1,63 @@
-import axios from "axios";
+import axios from 'axios';
 
-const SEARCH_URL = "https://api.github.com/search/users";
+const BASE_URL = import.meta.env.VITE_GITHUB_API_BASE_URL || 'https://api.github.com';
+const API_TOKEN = import.meta.env.VITE_GITHUB_API_TOKEN;
 
-export const searchUsers = async (username, location, minRepos) => {
-  const token = import.meta.env.VITE_APP_GITHUB_API_KEY;
+// Create axios instance with default config
+const githubAPI = axios.create({
+  baseURL: BASE_URL,
+  headers: API_TOKEN ? {
+    'Authorization': `token ${API_TOKEN}`
+  } : {}
+});
 
-  let query = "";
-
-  if (username) query += `${username} `;
-  if (location) query += `location:${location} `;
-  if (minRepos) query += `repos:>${minRepos}`;
-
-  const headers = token ? { Authorization: `token ${token}` } : {};
-
-  const response = await axios.get(`${SEARCH_URL}?q=${encodeURIComponent(query)}`, {
-    headers,
-  });
-
-  return response.data;
+/**
+ * Fetch user data from GitHub API
+ * @param {string} username - GitHub username to search
+ * @returns {Promise} User data
+ */
+export const fetchUserData = async (username) => {
+  try {
+    const response = await githubAPI.get(`/users/${username}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'User not found');
+  }
 };
+
+/**
+ * Advanced search for GitHub users with filters
+ * @param {Object} params - Search parameters
+ * @param {string} params.username - GitHub username to search
+ * @param {string} params.location - User location
+ * @param {number} params.minRepos - Minimum number of repositories
+ * @returns {Promise} Search results
+ */
+export const searchUsers = async ({ username, location, minRepos }) => {
+  try {
+    let query = '';
+    
+    if (username) {
+      query += username;
+    }
+    
+    if (location) {
+      query += `+location:${location}`;
+    }
+    
+    if (minRepos) {
+      query += `+repos:>=${minRepos}`;
+    }
+
+    if (!query) {
+      return { items: [] };
+    }
+
+    const response = await githubAPI.get(`/search/users?q=${query}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'Search failed');
+  }
+};
+
+export default githubAPI;
