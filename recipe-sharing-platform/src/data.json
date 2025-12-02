@@ -3,18 +3,20 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://via.placeholder.com/300x200"
+    "image":  "/images/sphagetti.jpg"
   },
+
+
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken cooked in a creamy tomato-based gravy.",
-    "image": "https://via.placeholder.com/300x200"
+    "image": "/images/chicken_masala.jpg"
   },
   {
     "id": 3,
     "title": "Vegetable Stir Fry",
     "summary": "Crispy vegetables tossed in a light soy sauce glaze.",
-    "image": "https://via.placeholder.com/300x200"
+    "image": "/images/vegie_stirz-fry.jpg"
   }
 ]

@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import recipesData from "../data.json"; // ← Import JSON directly
 
 const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
 
+  // Load JSON into state
   useEffect(() => {
-    fetch("/src/data.json")
-      .then((res) => res.json())
-      .then((data) => setRecipes(data))
-      .catch((err) => console.error("Error loading data:", err));
+    setRecipes(recipesData); // ← No fetch needed
   }, []);
 
   return (
@@ -16,15 +16,15 @@ const HomePage = () => {
         Recipe Sharing Platform
       </h1>
 
-      {/* Grid layout */}
-      <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
+      {/* Grid */}
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {recipes.map((recipe) => (
           <div
             key={recipe.id}
-            className="bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300 hover:scale-[1.02] transform"
+            className="bg-white rounded-xl shadow-md hover:shadow-xl transition-transform duration-300 hover:scale-[1.02]"
           >
             <img
-              src={recipe.image}
+              src={recipe.image} // ← Image correctly used
               alt={recipe.title}
               className="w-full h-40 object-cover rounded-t-xl"
             />
@@ -33,9 +33,12 @@ const HomePage = () => {
               <h2 className="text-xl font-semibold mb-2">{recipe.title}</h2>
               <p className="text-gray-600 text-sm">{recipe.summary}</p>
 
-              <button className="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+              <Link
+                to={`/recipe/${recipe.id}`}
+                className="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+              >
                 View Recipe
-              </button>
+              </Link>
             </div>
           </div>
         ))}
@@ -45,5 +48,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-
