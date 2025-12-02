@@ -1,39 +1,31 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import recipesData from "../data.json"; // ← Import JSON directly
+import recipes from "../data.json";
 
 const RecipeDetail = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
 
-  // Find recipe by ID
   useEffect(() => {
-    const selected = recipesData.find(
-      (item) => item.id === parseInt(id)
+    const selectedRecipe = recipes.find(
+      (recipe) => recipe.id === parseInt(id)
     );
-    setRecipe(selected);
+    setRecipe(selectedRecipe);
   }, [id]);
 
   if (!recipe) {
-    return (
-      <div className="p-6 text-center text-gray-600 text-lg">
-        Loading recipe...
-      </div>
-    );
+    return <div className="p-6 text-center text-lg">Loading...</div>;
   }
 
   return (
-    <div className="max-w-3xl mx-auto py-10 px-6">
-      <Link
-        to="/"
-        className="inline-block mb-6 text-blue-600 hover:underline"
-      >
+    <div className="max-w-3xl mx-auto py-8 px-6">
+      <Link to="/" className="text-blue-600 hover:underline block mb-6">
         ← Back to Home
       </Link>
 
-      <div className="bg-white rounded-xl shadow-md p-6">
+      <div className="bg-white shadow-lg rounded-2xl p-6">
         <img
-          src={recipe.image} // ← Image correctly used
+          src={recipe.image}
           alt={recipe.title}
           className="w-full h-64 object-cover rounded-xl mb-6"
         />
@@ -41,27 +33,27 @@ const RecipeDetail = () => {
         <h1 className="text-3xl font-bold mb-4">{recipe.title}</h1>
         <p className="text-gray-700 mb-8">{recipe.summary}</p>
 
-        {/* Ingredients */}
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold mb-2">Ingredients</h2>
+        {/* INGREDIENTS */}
+        <section className="mb-8">
+          <h2 className="text-xl font-semibold mb-3">Ingredients</h2>
           <ul className="list-disc list-inside text-gray-700 space-y-1">
             <li>1 tbsp salt</li>
             <li>2 cups flour</li>
             <li>1 tsp pepper</li>
             <li>Olive oil</li>
           </ul>
-        </div>
+        </section>
 
-        {/* Instructions */}
-        <div>
-          <h2 className="text-xl font-semibold mb-2">Instructions</h2>
+        {/* INSTRUCTIONS */}
+        <section>
+          <h2 className="text-xl font-semibold mb-3">Instructions</h2>
           <ol className="list-decimal list-inside text-gray-700 space-y-2">
-            <li>Prepare all ingredients and heat your pan.</li>
-            <li>Cook gently until flavors combine.</li>
-            <li>Simmer for 10–15 minutes.</li>
-            <li>Serve warm and enjoy.</li>
+            <li>Prepare all ingredients.</li>
+            <li>Heat your pan and start cooking.</li>
+            <li>Simmer for 10 minutes.</li>
+            <li>Serve & enjoy.</li>
           </ol>
-        </div>
+        </section>
       </div>
     </div>
   );
